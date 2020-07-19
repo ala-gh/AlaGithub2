@@ -16,12 +16,16 @@ import numpy as np
 import numpy as np
 idx_test = np.random.randint(0, 245056, 5000)
 idx_train = list()
-
-for i in range(120):
+a =245056-5000
+print("a",a)
+b =0
+for i in range(245055):
     if not i in idx_test:
         idx_train.append(i)
-
-
+        b =b+1
+print("b",b)
+print("idx:",idx_test,"len:",len(idx_test))
+print("len",len(idx_train))
 
 
 loss_function = torch.nn.MSELoss(reduction='sum')
