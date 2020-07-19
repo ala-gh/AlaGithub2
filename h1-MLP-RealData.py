@@ -1,5 +1,6 @@
 import pandas as pd
 import torch
+import torch.nn as nn
 
 Model = torch.nn.Sequential(
     torch.nn.Linear(3,5),
@@ -16,41 +17,48 @@ import numpy as np
 import numpy as np
 idx_test = np.random.randint(0, 245056, 5000)
 idx_train = list()
-a =245056-5000
-print("a",a)
-b =0
-for i in range(245055):
+
+for i in range(245056):
     if not i in idx_test:
         idx_train.append(i)
-        b =b+1
-print("b",b)
-print("idx:",idx_test,"len:",len(idx_test))
-print("len",len(idx_train))
 
+data_train = data_array[idx_train,:]
+data_test = data_array[idx_test,:]
 
-loss_function = torch.nn.MSELoss(reduction='sum')
-new_w = torch.optim.SGD(Model.parameters, lr=0.01)
+x_train = data_train[:,:3]
+y_train = data_train[:,3]
 
-from torch.utils.data import random_split, DataLoader
-data_train, data_valid, data_test = random_split(data_array, (171540, 49011, 24505))
-#x_train = data_train[:,:3]
-#y_train = data_train[:,3]
+x_test = data_test[:,:3]
+y_test = data_test[:,3]
 
-dataloader = DataLoader(data_train, batch_size=10, shuffle=True)
+#loss_function = torch.nn.MSELoss(reduction='sum')
+loss_function = nn.CrossEntropyLoss()
+new_w = torch.optim.SGD(Model.parameters(), lr=0.01)
 
-print(type(dataloader))
-
-for data_batch, label_batch in dataloader:
+for i in range(100):
+    out = Model(x_train)
+    loss = loss_function(out,y_train)
+    print("loss" ,loss.item() )
     new_w.zero_grad()
-
-    out = Model(data_batch)
-    loss = loss_function(out, label_batch)
-    print("loss:",loss.item())
     loss.backward()
     new_w.step()
 
+#-------------------------------------------------------------------
 
+# from torch.utils.data import random_split, DataLoader
+# data_train, data_valid, data_test = random_split(data_array, (171540, 49011, 24505))
+# #x_train = data_train[:,:3]
+# #y_train = data_train[:,3]
+#dataloader = DataLoader(data_train, batch_size=10, shuffle=True)
 
+# for data_batch, label_batch in dataloader:
+#     new_w.zero_grad()
+#
+#     out = Model(data_batch)
+#     loss = loss_function(out, label_batch)
+#     print("loss:",loss.item())
+#     loss.backward()
+#     new_w.step()
 
 #----------------------------------1--------------------------------------------
 # data_array_len = len(data_array)
