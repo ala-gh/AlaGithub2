@@ -43,6 +43,7 @@ for i in range(100):
     loss.backward()
     new_w.step()
 
+print("ala")
 #-------------------------------------------------------------------
 
 # from torch.utils.data import random_split, DataLoader
