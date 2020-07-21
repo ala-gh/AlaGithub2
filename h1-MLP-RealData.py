@@ -1,6 +1,8 @@
 import pandas as pd
 import torch
 import torch.nn as nn
+torch.manual_seed(1234)
+import torch.nn.functional as F
 
 Model = torch.nn.Sequential(
     torch.nn.Linear(3,5),
@@ -8,7 +10,7 @@ Model = torch.nn.Sequential(
     torch.nn.Linear(5,2)
 )
 
-data = pd.read_csv("E:\proposal&payan nameh\projectpython\p19-howsam-MLP-realdata\dataskin.csv")
+data = pd.read_csv("E:\proposal&payan nameh\projectpython\ProjectHowsamDL\dataskin.csv")
 data_numeric = data.apply(pd.to_numeric)
 data_array = data_numeric.values
 #data_array_len = len(data_array)
