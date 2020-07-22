@@ -38,9 +38,9 @@ loss_function = nn.CrossEntropyLoss()
 new_w = torch.optim.SGD(Model.parameters(), lr=0.01)
 
 for i in range(100):
-    out = Model(x_train)
+    out = Model(x_train)    # ?? inja error dare...
     loss = loss_function(out,y_train)
-    print("loss" ,loss.item() )
+    print("loss", loss.item())
     new_w.zero_grad()
     loss.backward()
     new_w.step()

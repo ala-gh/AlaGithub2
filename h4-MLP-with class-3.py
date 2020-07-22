@@ -47,7 +47,7 @@ class Net(nn.Module):
         return x
 net = Net()
 
-criterion = nn.CrossEntropyLoss()
+#optimizer = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(net.parameters(), lr=lr)
 X = torch.Tensor(xtrain).float()
 Y = torch.Tensor(ytrain).long()
@@ -60,7 +60,7 @@ for epoch in range(num_epoch):
     optimizer.zero_grad()
     print("optimizer zero")
     out = net(X)
-    loss = criterion(out, Y)
+    loss = optimizer(out, Y)      #?????? inja error dare .....
     print("epoch:",epoch,loss.item())
     loss.backward()
     optimizer.step()
