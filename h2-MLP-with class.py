@@ -37,13 +37,15 @@ class Data(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        sample = (self.x[idx,:], self.y[idx])      #?? chejori x , y ro ghablesh tarif konam agar split konam to class. injori ke kar nemokone doroste?
+        sample = (self.x[idx,:], self.y[idx])
+        #??  howsam - chejori x , y ro ghablesh tarif konam agar split konam to class. injori ke kar nemokone doroste?
         return sample
 
 print("start")
 model = Net()
 print("created model")
-data = Data('E:\proposal&payan nameh\projectpython\ProjectHowsamDL\dataskin.csv')   # ?? moshakhase ke bayad error dashte bashe .
+data = Data('E:\proposal&payan nameh\projectpython\ProjectHowsamDL\dataskin.csv')
+# ?? moshakhase ke bayad error dashte bashe ...
 print("created data")
 print("len",len(data))
 
@@ -57,7 +59,7 @@ for data_batch, label_batch in dataloader:
 loss_function = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
-for i ,data_batch, label_batch in data :
+for i, data_batch, label_batch in data :
         optimizer.zero_grad()
         print("shape",data_batch.shape)
         out = model(data_batch)
