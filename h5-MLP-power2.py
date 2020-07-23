@@ -26,11 +26,12 @@ loss_fn = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
 print("start")
-for i in range(30):
+for i in range(500):
     y_pred = model(x)
     loss = loss_fn(y_pred,y)
-    print(i,loss.item())
+    print(i, loss.item())
     optimizer.zero_grad()
+    loss.backward()
     optimizer.step()
 
         
