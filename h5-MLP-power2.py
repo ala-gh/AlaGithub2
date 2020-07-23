@@ -19,6 +19,7 @@ loss_fn = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
 for i in range(30):
+    print("start")
     y_pred = model(x)    #?? howsam  -inja error dare
     loss = loss_fn(y_pred,y)
     print(i,loss.item())
