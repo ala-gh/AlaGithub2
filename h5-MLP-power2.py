@@ -1,7 +1,8 @@
 #********************************* 4 min -    min *************************
 import torch
 
-x = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+x = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) #.t()
+#x = torch.transpose(x,1)
 y = torch.tensor([0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100])
 
 class Model(torch.nn.Module):
