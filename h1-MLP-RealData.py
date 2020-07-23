@@ -1,13 +1,13 @@
 import pandas as pd
 import torch
 import torch.nn as nn
-torch.manual_seed(1234)
+torch.manual_seed(1234)   #? howsam - yani chi ?
 import torch.nn.functional as F
 
 Model = torch.nn.Sequential(
-    torch.nn.Linear(3,5),
+    torch.nn.Linear(3, 5),
     torch.nn.ReLU(),
-    torch.nn.Linear(5,2)
+    torch.nn.Linear(5, 2)
 )
 
 data = pd.read_csv("E:\proposal&payan nameh\projectpython\ProjectHowsamDL\dataskin.csv")
@@ -15,7 +15,6 @@ data_numeric = data.apply(pd.to_numeric)
 data_array = data_numeric.values
 
 #data_array_len = len(data_array)
-import numpy as np
 
 import numpy as np
 idx_test = np.random.randint(0, 245056, 5000)
@@ -34,13 +33,15 @@ y_train = data_train[:,3]
 x_test = data_test[:,:3]
 y_test = data_test[:,3]
 
+#without shufle ....
+
 #loss_function = torch.nn.MSELoss(reduction='sum')
 loss_function = nn.CrossEntropyLoss()
 new_w = torch.optim.SGD(Model.parameters(), lr=0.01)
 
 for i in range(100):
-    out = Model(x_train)    # ?? inja error dare...
-    loss = loss_function(out,y_train)
+    out = Model(x_train)    # howsam - ?? inja error dare...
+    loss = loss_function(out, y_train)
     print("loss", loss.item())
     new_w.zero_grad()
     loss.backward()
