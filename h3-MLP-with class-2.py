@@ -49,7 +49,7 @@ number_of_valid=(0.1*len(data)).__int__()
 print("number_of_valid",number_of_valid)
 
 train, valid, test = random_split\
-    (data,[number_of_train, number_of_valid, number_of_test])    #?? inja error dare ... chera ?
+    (data,[number_of_train, number_of_valid, number_of_test])    #??howsam - inja error dare ... chera ?
 print("self.train",train)
 
 dataloader = DataLoader(train, batch_size=10, shuffle=True)
