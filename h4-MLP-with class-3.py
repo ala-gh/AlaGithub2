@@ -12,6 +12,7 @@ idx_train = list()
 for i in range(245056):
     if not i in idx_test:
         idx_train.append(i)
+
 datatest_array = datatrain_array[idx_test,:]
 
 #split x and y (feature and target)
@@ -47,7 +48,7 @@ class Net(nn.Module):
         return x
 net = Net()
 
-#optimizer = nn.CrossEntropyLoss()
+loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(net.parameters(), lr=lr)
 X = torch.Tensor(xtrain).float()
 Y = torch.Tensor(ytrain).long()
@@ -60,7 +61,7 @@ for epoch in range(num_epoch):
     optimizer.zero_grad()
     print("optimizer zero")
     out = net(X)
-    loss = optimizer(out, Y)      #?????? inja error dare .....
+    loss = loss_fn(out, Y)    #?? howsam inja error dare...
     print("epoch:",epoch,loss.item())
     loss.backward()
     optimizer.step()
