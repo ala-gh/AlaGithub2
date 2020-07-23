@@ -13,6 +13,7 @@ Model = torch.nn.Sequential(
 data = pd.read_csv("E:\proposal&payan nameh\projectpython\ProjectHowsamDL\dataskin.csv")
 data_numeric = data.apply(pd.to_numeric)
 data_array = data_numeric.values
+
 #data_array_len = len(data_array)
 import numpy as np
 

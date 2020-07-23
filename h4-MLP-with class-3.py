@@ -52,8 +52,8 @@ optimizer = torch.optim.SGD(net.parameters(), lr=lr)
 X = torch.Tensor(xtrain).float()
 Y = torch.Tensor(ytrain).long()
 
-Xv = torch.Tensor(xtest).float()
-Yv = torch.Tensor(ytest).long()
+Xt = torch.Tensor(xtest).float()
+Yt = torch.Tensor(ytest).long()
 #train
 for epoch in range(num_epoch):
 
