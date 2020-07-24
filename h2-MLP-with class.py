@@ -29,8 +29,12 @@ class Data(Dataset):
         number_of_valid = (0.1 * len(self.data_array)).__int__()
         print("number_of_valid",number_of_valid)
 
+        self.x = torch.Tensor(self.data_array[:, :3]).float()
+        self.y = torch.Tensor(self.data_array[:, 3]).long()
+
         self.train, self.valid, self.test = random_split(self.data_array,
                                                          [number_of_train, number_of_valid, number_of_test])
+              # ?? howsam - error -chera andaze dataset hamkhani nadare ba voroodi ?
 
         print("self.train",self.train)
     def __len__(self):
@@ -38,7 +42,6 @@ class Data(Dataset):
 
     def __getitem__(self, idx):
         sample = (self.x[idx,:], self.y[idx])
-        #??  howsam - chejori x , y ro ghablesh tarif konam agar split konam to class. injori ke kar nemokone doroste?
         return sample
 
 print("start")
